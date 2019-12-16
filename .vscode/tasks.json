@@ -1,0 +1,60 @@
+{
+    "version": "2.0.0",
+
+    "tasks": [
+        {
+            "label": "CMake",
+            "type": "shell",
+            "command": "cmake",
+            "windows": {
+                "command": "cmake",
+                "args": [
+                    "${workspaceFolder}",
+                    "-G",
+                    "MinGW Makefiles"
+                ]
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/../buildsnakeGame"
+            },
+            "args": [
+                "${workspaceFolder}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [ "buildKlasorOlustur" ],
+       },
+        {
+            "label": "buildKlasorOlustur",
+            "type":"shell",
+            "command":"mkdir",
+            "windows": {
+                "command": "./KlasorOlustur.bat",
+                "args": [
+                    "buildsnakeGame"
+                ]
+
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/.."
+            },
+            "args": [
+                "-p",
+                "buildsnakeGame"
+            ],
+        },
+        {
+            "label": "Make",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/../buildsnakeGame"
+            },
+            "command": "make",
+            "args": [
+                "-l"
+            ]
+        }
+    ]
+}
